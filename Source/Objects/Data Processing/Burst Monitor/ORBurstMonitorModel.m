@@ -464,8 +464,8 @@ double facto(uint64_t num)
                     NSString* runglob = [NSString stringWithFormat:@"%@", thing2]; //The most specific reference that has no spaces
                     //NSLog(@"%@",runglob);
                     
-                    NSRange runnumtitle = [runglob rangeOfString:@"RunNumber = "]; //12 lengnth, need 4 char for run number
-                    NSRange runRange = NSMakeRange((runnumtitle.location+12), 4); ///109 4 for runnumber
+                    NSRange runnumtitle = [runglob rangeOfString:@"RunNumber = "]; //12 lengnth, need 4 char for run number NOW 5 DIGITS!!
+                    NSRange runRange = NSMakeRange((runnumtitle.location+12), 5); ///109 4 for runnumber
                     NSString* runnumstr = [runglob substringWithRange:runRange];
                     //NSLog(@"string is %@\n",runnumstr);
                     runnum = [runnumstr intValue];
