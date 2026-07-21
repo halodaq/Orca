@@ -14,7 +14,7 @@ from os.path import basename
 def send_mail(user, password, server, fromaddr, to, subject,
               message, attachments, filename):
     msg = MIMEMultipart()
-    fromaddr = 'daq@daqN.halo-r.snolab.ca'
+    fromaddr = 'halo.operations@snolab.ca'
     if fromaddr == '':
         fromaddr = user + '@' + server
     msg['From'] = fromaddr
@@ -47,11 +47,12 @@ def send_mail(user, password, server, fromaddr, to, subject,
             f.close()
 #    serv = smtplib.SMTP('smtp.' + server, 587)
 #    serv = smtplib.SMTP('smtp.snolab.ca', 25)
-    serv = smtplib.SMTP('snolab-ca.mail.protection.outlook.com', 25)
+#    serv = smtplib.SMTP('snolab-ca.mail.protection.outlook.com', 25)
+    serv = smtplib.SMTP('smtp.office365.com', 587)
     serv.ehlo()
-#    serv.starttls()
-#    serv.ehlo()
-#    serv.login(user, password)
+    serv.starttls()
+    serv.ehlo()
+    serv.login(fromaddr, password)
     to.replace(' ', '')
     serv.sendmail(fromaddr, to.split(','), msg.as_string())
     serv.close()
